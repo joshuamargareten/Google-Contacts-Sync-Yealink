@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yealink Google Contacts Sync</title>
+    <link rel="icon" href="/icon.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #515151;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            z-index: 1000;
+        }
+
+        .header img {
+            vertical-align: middle;
+            align-self: start;
+            padding: 3px;
+        }
+
+        .header h1 {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header .links {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .header .links a {
+            color: #fff;
+            text-decoration: none;
+            border: #0057cc 1px solid;
+            border-radius: 5px;
+            padding: 5px;
+            width: 100px;
+            text-align: center;
+            margin: 10px;
+            background-color: #08b286;
+            font-size: large;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Set page header with logo from /logo.png, tital and links for Login| Logout | XML Phonebook -->
+    <div class="header">
+        <img src="/logo.png" alt="Yealink Logo" width="100">
+        <h1>Yealink Google Contacts Sync</h1>
+        <div class="links">
+            <!--if loged in show only logout if not loged in show only login-->
+            <% if (logedin) { %>
+                <a href="/logout">Logout</a> <a target="_blank" href="/phonebook">XML Phonebook</a> <a href="/contacts">Conatcts</a>
+                <% } else { %>
+                    <a href="/login">Login</a>
+                    <% } %>
+        </div>
+    </div>
+    <!--Show the main content of the page-->
+    <div class="container">
+        <div class="card">
+            <h1>Welcome to Yealink Google Contacts Sync</h1>
+            <p>This is an application that allows you to sync your Google Contacts with your Yealink IP Phone.
+            </p>
+            <% if (logedin) { %>
+                <!-- show name and email of who is logged in nicely formatted-->
+                <p>You are currently logged in as <strong>
+                        <%= name %>
+                    </strong> (<%= email %>).</p>
+                <p>Click <a href="/contacts">here</a> to view your contacts.</p>
+                <p>To add the contacts to your phone, ask your provider to add to the porvisioning file <strong>include:config "<%= cfg %>"</strong></p>
+                <% } else { %>
+                    <p>You are currently not logged in.</p>
+                    <p>Click <a href="/login">here</a> to login and start syncing your contacts.</p>
+                    <% } %>
+        </div>
+    </div>
+
+</body>
+
+</html>

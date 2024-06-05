@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yealink Google Contacts Sync</title>
+    <link rel="icon" href="/icon.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            overflow: auto;
+        }
+
+        .card h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th {
+            background-color: #515151;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+        }
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        tr td table tr, tr td table {
+            border: none;
+        }
+        tr td table tr td {
+            border: none;
+            text-align: left;
+            /* text transform capitalize first letter and lowercase the rest */
+            text-transform: lowercase;
+            width: 10em;
+            max-width: 10em;
+            min-width: 10em;
+        }
+        tr td table tr td::first-letter {
+            text-transform: capitalize;
+        }
+
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #515151;
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            z-index: 1000;
+        }
+
+        .header img {
+            vertical-align: middle;
+            align-self: start;
+            padding: 3px;
+        }
+
+        .header h1 {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header .links {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .header .links a {
+            color: #fff;
+            text-decoration: none;
+            border: #0057cc 1px solid;
+            border-radius: 5px;
+            padding: 5px;
+            width: 100px;
+            text-align: center;
+            margin: 10px;
+            background-color: #08b286;
+            font-size: large;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--Set page header with logo from /logo.png, tital and links for Login| Logout | XML Phonebook -->
+    <div class="header">
+        <img src="/logo.png" alt="Yealink Logo" width="100">
+        <h1>Yealink Google Contacts Sync</h1>
+        <div class="links">
+            <% if (logedin) { %>
+                <a href="/logout">Logout</a> <a target="_blank" href="/phonebook">XML Phonebook</a> <a href="/">Home</a>
+                <% } else { %>
+                    <script>
+                        window.location.href = '/';
+                    </script>
+                    <% } %>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card">
+            <h1>Contacts</h1>
+            <!-- create table -->
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Numbers</th>
+                </tr>
+
+                <% contacts.forEach(contact=> { %>
+                    <!-- Display the contact only if it has a name and phoneNumbers -->
+                    <% if (contact.phoneNumbers && contact.names) { %>
+                        <tr>
+                            <td>
+                                <%= contact.names[0].displayName %>
+                            </td>
+                            <td>
+                                <% contact.phoneNumbers?.forEach(number=> { %>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <%= number.type || 'Phone' %>:
+                                            </td>
+                                            <td>
+                                                <a href="tel:<%= number.value.replace(/\D/g, '') %>"><%= number.value %></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                            <% }) %>
+                            </td>
+                        </tr>
+                        <% }}) %>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
