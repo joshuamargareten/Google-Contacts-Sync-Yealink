@@ -6,6 +6,15 @@ IF %ERRORLEVEL% NEQ 0 (
 	pause
 	exit
 )
+set winget_ver=null
+for /F "tokens=*" %%G in ('node -v') do @set winget_ver=%%G
+IF %winget_ver% == null (
+    echo Please install winget first.
+    echo You can download it from here:
+    echo https://apps.microsoft.com/detail/9nblggh4nns1
+    echo.
+    pause
+)
 set NODE_VER=null
 for /F "tokens=*" %%G in ('node -v') do @set NODE_VER=%%G
 IF %NODE_VER% == null (
