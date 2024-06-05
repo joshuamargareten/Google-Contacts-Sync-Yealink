@@ -33,6 +33,7 @@ cd Google-Contacts-Sync-Yealink-
 ```
 npm install
 ```
+- If you perfer you can use the installation batch file to install Node.js, Git, clone the repo, install dependencies.
 
 ## Configuration
 1. Obtain Google API credentials:
