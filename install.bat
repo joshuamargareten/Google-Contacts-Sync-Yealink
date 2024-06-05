@@ -14,6 +14,7 @@ IF %winget_ver% == null (
     echo https://apps.microsoft.com/detail/9nblggh4nns1
     echo.
     pause
+    exit
 )
 set NODE_VER=null
 for /F "tokens=*" %%G in ('node -v') do @set NODE_VER=%%G
