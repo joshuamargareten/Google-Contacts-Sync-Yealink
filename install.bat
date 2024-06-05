@@ -6,16 +6,7 @@ IF %ERRORLEVEL% NEQ 0 (
 	pause
 	exit
 )
-set winget_ver=null
-for /F "tokens=*" %%G in ('node -v') do @set winget_ver=%%G
-IF %winget_ver% == null (
-    echo Please install winget first.
-    echo You can download it from here:
-    echo https://apps.microsoft.com/detail/9nblggh4nns1
-    echo.
-    pause
-    exit
-)
+
 set NODE_VER=null
 for /F "tokens=*" %%G in ('node -v') do @set NODE_VER=%%G
 IF %NODE_VER% == null (
@@ -27,13 +18,32 @@ IF %NODE_VER% == null (
     start /W node-insatller.msi /passive
     del node-insatller.msi
 )
+
 echo Node.js installed! node version:
 call node -v
 echo.
-echo Installing Git...
-echo.
-winget install --id Git.Git -e --source winget
-echo.
+
+set GIT_VER=null
+for /F "tokens=*" %%G in ('node -v') do @set GIT_VER=%%G
+IF %GIT_VER% == null (
+    set winget_ver=null
+    for /F "tokens=*" %%G in ('node -v') do @set winget_ver=%%G
+    IF %winget_ver% == null (
+        echo Please install git or winget first.
+        echo You can download winget from here:
+        echo https://apps.microsoft.com/detail/9nblggh4nns1
+        echo or check alernative ways to install it here:
+        echo https://phoenixnap.com/kb/install-winget
+        echo.
+        pause
+        exit
+    )
+    echo Installing Git...
+    echo.
+    winget install --id Git.Git -e --source winget
+    echo.
+)
+
 echo Downloading source files...
 echo.
 cd %userprofile%
