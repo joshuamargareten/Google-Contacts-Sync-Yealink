@@ -21,7 +21,7 @@ Before using this application, ensure you have the following:
 ## Installation
 1. Clone this repository to your local machine:
 ```
-git clone https://github.com/joshuamargareten/Google-Contacts-Sync-Yealink-.git
+git clone https://github.com/joshuamargareten/Google-Contacts-Sync-Yealink.git
 ```
 2. Navigate to the project directory:
 ```
