@@ -19,6 +19,8 @@ Before using this application, ensure you have the following:
 - Google API credentials (client ID, client secret, etc.) for accessing the Google Contacts API.
 
 ## Installation
+#### ```RUN THIS APP ONLY ON A SECURED LOCAL NETWORK AS ALL YOUR CONTACTS WILL BE EXPOSED```
+- #### You may edit the JS code to add authorization, all at your own risk.
 1. Clone this repository to your local machine:
 ```
 git clone https://github.com/joshuamargareten/Google-Contacts-Sync-Yealink.git
