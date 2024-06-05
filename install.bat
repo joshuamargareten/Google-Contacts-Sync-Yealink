@@ -18,7 +18,7 @@ IF %NODE_VER% == null (
     del node-insatller.msi
 )
 echo Node.js installed! node version:
-node -v
+call node -v
 echo.
 echo Installing Git...
 echo.
