@@ -33,4 +33,10 @@ echo.
 echo Installing dependencies...
 echo.
 call npm i --silent
+echo.
+echo Setting a scheduler tast to start the server on boot...
+schtasks  /create /tn "Google Contacts Sync Server" /tr "\"%userprofile%\Google-Contacts-Sync-Yealink\launcher.bat\"" /sc onlogon /ru %USERNAME% /f
+echo.
+echo Setup complete! You can now run the run.bat file.
+echo.
 pause

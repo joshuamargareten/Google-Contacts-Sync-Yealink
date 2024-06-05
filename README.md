@@ -27,13 +27,13 @@ git clone https://github.com/joshuamargareten/Google-Contacts-Sync-Yealink.git
 ```
 2. Navigate to the project directory:
 ```
-cd Google-Contacts-Sync-Yealink-
+cd Google-Contacts-Sync-Yealink
 ```
 3. Install dependencies using npm:
 ```
 npm install
 ```
-- If you perfer you can use the installation batch file to install Node.js, Git, clone the repo, install dependencies.
+- If you prefer you can use the installation batch file to install Node.js, Git, clone the repo, install dependencies.
 
 ## Configuration
 1. Obtain Google API credentials:
