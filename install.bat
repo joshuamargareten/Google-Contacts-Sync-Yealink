@@ -1,4 +1,8 @@
 @echo off
+title Google Contacts Sync Yealink Setup
+echo.
+echo Checking for admin permissions...
+echo.
 NET SESSION >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 (
 	echo This setup needs admin permissions. Please run this file as admin.
@@ -7,9 +11,8 @@ IF %ERRORLEVEL% NEQ 0 (
 	exit
 )
 
-set NODE_VER=null
 for /F "tokens=*" %%G in ('node -v') do @set NODE_VER=%%G
-IF %NODE_VER% == null (
+IF NOT DEFINED NODE_VER (
     echo Downloading Node.js...
     echo.
     curl -L -s "https://nodejs.org/dist/v20.14.0/node-v20.14.0-x64.msi" -o node-insatller.msi
@@ -17,18 +20,29 @@ IF %NODE_VER% == null (
     echo.
     start /W node-insatller.msi /passive
     del node-insatller.msi
+    echo.
+    echo Node Installed! please run this file again to continue.
+    echo.
+    echo Press any key to Exit.
+    pause >null
+    exit
 )
 
 echo Node.js installed! node version:
 call node -v
 echo.
 
-set GIT_VER=null
-for /F "tokens=*" %%G in ('node -v') do @set GIT_VER=%%G
-IF %GIT_VER% == null (
-    set winget_ver=null
-    for /F "tokens=*" %%G in ('node -v') do @set winget_ver=%%G
-    IF %winget_ver% == null (
+if exist %userprofile%\Google-Contacts-Sync-Yealink rmdir /s /q %userprofile%\Google-Contacts-Sync-Yealink
+
+for /F "tokens=*" %%G in ('git -v') do @set GIT_VER=%%G
+echo.
+
+set winget_ver=null
+for /F "tokens=*" %%G in ('winget -v') do @set winget_ver=%%G
+
+IF NOT DEFINED GIT_VER (
+    IF NOT DEFINED winget_ver (
+        echo.
         echo Please install git or winget first.
         echo You can download winget from here:
         echo https://apps.microsoft.com/detail/9nblggh4nns1
