@@ -21,6 +21,7 @@ Before using this application, ensure you have the following:
 ## Installation
 #### ```RUN THIS APP ONLY ON A SECURED LOCAL NETWORK AS ALL YOUR CONTACTS WILL BE EXPOSED```
 - #### You may edit the JS code to add authorization, all at your own risk.
+- If you prefer you can use the installation batch or exe file to install Node.js, Git, clone the repo, install dependencies.
 1. Clone this repository to your local machine:
 ```
 git clone https://github.com/joshuamargareten/Google-Contacts-Sync-Yealink.git
@@ -33,7 +34,6 @@ cd Google-Contacts-Sync-Yealink
 ```
 npm install
 ```
-- If you prefer you can use the installation batch file to install Node.js, Git, clone the repo, install dependencies.
 
 ## Configuration
 1. Obtain Google API credentials:
